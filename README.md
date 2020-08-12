@@ -113,7 +113,7 @@ bin/kafka-console-consumer.sh --bootstrap-server MariaDB_primary:9092 --topic te
 - 토픽확인 
 
   ``` bash
-  $  bin/kafka-topics.sh --list --zookeeper server01
+  $  bin/kafka-topics.sh --list --zookeeper MariaDB_primary
   ```
 
 - Kafka process 확인
@@ -125,8 +125,11 @@ bin/kafka-console-consumer.sh --bootstrap-server MariaDB_primary:9092 --topic te
 - 토픽삭제
 
   ``` bash
-  bin/kafka-topics.sh --delete --zookeeper MariaDB_primary:9092 --topic test_vcenter_metrics or 
+  bin/kafka-topics.sh --delete --zookeeper MariaDB_primary:9092 --topic test_vcenter_metrics 
+  or 
   bin/kafka-topics.sh --zookeeper MariaDB_primary:2181 --alter --topic test_vcenter_metrics --config retention.ms=1000
+  
+  --force : 
   ```
 
 
