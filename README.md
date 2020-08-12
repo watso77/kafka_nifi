@@ -13,10 +13,137 @@
 ![전체프로세스](https://github.com/watso77/kafka_nifi/blob/master/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-08-12%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2010.51.30.png)
 
 
+### Kafka 설치
 
-### Telegraf 설치 및 설정
+#### Download 
 
-- Telegraf 설치( 참고 )
+- apache quick start 참고 (https://kafka.apache.org/quickstart)
+
+- ``` ba
+  > tar -xzf kafka_2.12-2.5.0.tgz
+  > cd kafka_2.12-2.5.0
+  ```
+
+
+
+### 설정 
+
+- zookeeper 설정 : **config/zookeeper.properties**
+
+  ``` bash
+  dataDir=/home/centos/apps/zookeeper/data          <<zookeeper dir
+  
+  # the port at which the clients will connect
+  clientPort=2181
+  # disable the per-ip limit on the number of connections since this is a non-production config
+  maxClientCnxns=0
+  
+  server.1=server01:15000:16000
+  server.2=server02:15000:16000
+  server.3=server03:15000:16000
+  ```
+
+- kafka 설정 : **config/server.properties**
+
+  ``` bash
+  1) Server Basics
+  ############################# Server Basics #############################
+  
+  # The id of the broker. This must be set to a unique integer for each broker.
+  broker.id=1                << 서버마다 다른 아이디를 줘야 함
+  
+  2) Zookeeper
+  ############################# Zookeeper #############################
+  
+  # Zookeeper connection string (see zookeeper docs for details).
+  # This is a comma separated host:port pairs, each corresponding to a zk
+  # server. e.g. "127.0.0.1:3000,127.0.0.1:3001,127.0.0.1:3002".
+  # You can also append an optional chroot string to the urls to specify the
+  # root directory for all kafka znodes.
+  zookeeper.connect=server01:2181,server02:2181,server03:2181
+  
+  
+  # Timeout in ms for connecting to zookeeper
+  zookeeper.connection.timeout.ms=6000
+  ```
+
+
+
+### 서버 실행
+
+- zookeeper  실행 : 
+
+  ``` bash
+  bin/zookeeper-server-start.sh config/zookeeper.properties
+  ```
+
+  
+
+- kafka 실행 :
+
+  ```
+  bin/kafka-server-start.sh config/server.properties
+  ```
+
+
+
+### 예제 실행
+
+#### 토픽 생성
+
+``` bash
+# telegraf topic 생성
+$ bin/kafka-topics.sh --create --bootstrap-server MariaDB_primary:9092 --replication-factor 1 --partitions 1 --topic telegraf
+```
+
+#### Producer 실행
+
+``` bash
+bin/kafka-console-producer.sh --bootstrap-server MariaDB_primary:9092 --topic telegraf
+```
+
+#### Consumer 실행
+
+``` bash
+bin/kafka-console-consumer.sh --bootstrap-server MariaDB_primary:9092 --topic telegraf --from-beginning
+```
+
+### 확인
+
+- 토픽확인 
+
+  ``` bash
+  $  bin/kafka-topics.sh --list --zookeeper server01
+  ```
+
+- Kafka process 확인
+
+  ``` bash
+  $ jps 
+  ```
+
+- 토픽삭제
+
+  ``` bash
+  bin/kafka-topics.sh --delete --zookeeper MariaDB_primary:9092 --topic test_vcenter_metrics or 
+  bin/kafka-topics.sh --zookeeper MariaDB_primary:2181 --alter --topic test_vcenter_metrics --config retention.ms=1000
+  ```
+
+
+### Telegraf로 vsphere metric 정보 수집
+
+-  설치
+
+  - 요구사항 : go language 설치
+
+``` bash
+# CentOS
+sudo yum -y install telegraf
+
+# 서버 실행
+``` bash
+./telegraf --config telegraf.conf
+
 
 - 설정 
 
