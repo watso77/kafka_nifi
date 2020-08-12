@@ -43,7 +43,7 @@
      ## and edited for the plugin to work.
      vcenters = [ "https://10.50.251.56/sdk","https://10.50.251.57/sdk" ]
      username = "administrator@vsphere.local"
-     password = "VMware1!"
+     password = "xxxxxxx"
      
      insecure_skip_verify = true  <== 보안검사 우회를 위해 true로 설정.
   ```
