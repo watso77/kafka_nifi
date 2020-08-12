@@ -64,29 +64,29 @@
 
     Group ID : test_nifi
 
-    ![스크린샷 2020-08-12 오전 11.06.04](/Users/roger/Desktop/스크린샷 2020-08-12 오전 11.06.04.png)
+    ![스크린샷 2020-08-12 오전 11.06.04](https://github.com/watso77/kafka_nifi/blob/master/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-08-12%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.06.04.png)
 
     
 
 - Split Record로 flowfile 나누기
 
-  ![스크린샷 2020-08-12 오전 11.08.41](/Users/roger/Desktop/스크린샷 2020-08-12 오전 11.08.41.png)
+  ![스크린샷 2020-08-12 오전 11.08.41](https://github.com/watso77/kafka_nifi/blob/master/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-08-12%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.08.41.png)
 
 - Attribute 생성 (EvaluateJsonPath)
 
   - metric으로 받을 모든 데이터를 Attribute로 저장 한다.
 
-    ![스크린샷 2020-08-12 오전 11.09.57](/Users/roger/Desktop/스크린샷 2020-08-12 오전 11.09.57.png)
+    ![스크린샷 2020-08-12 오전 11.09.57](https://github.com/watso77/kafka_nifi/blob/master/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-08-12%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.09.57.png)
 
 - AttributeToJson
 
   - 위에서 저장한 attribute를 Json형태로 변환 한다.
 
-    ![스크린샷 2020-08-12 오전 11.12.28](/Users/roger/Desktop/스크린샷 2020-08-12 오전 11.12.28.png)
+    ![스크린샷 2020-08-12 오전 11.12.28](https://github.com/watso77/kafka_nifi/blob/master/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-08-12%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.12.28.png)
 
 - RouteOnAttribte로 저장 데이터 분리
 
-  ![스크린샷 2020-08-12 오전 11.11.25](/Users/roger/Desktop/스크린샷 2020-08-12 오전 11.11.25.png)
+  ![스크린샷 2020-08-12 오전 11.11.25](https://github.com/watso77/kafka_nifi/blob/master/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-08-12%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.11.25.png)
 
 - DB Insert (PutDatabaseRecord)
 
@@ -95,13 +95,13 @@
   - Statement Type : INSERT
   - Table Name  : Attribute 속성 중 name속성을 테이블이름으로 사용한다.
 
-![스크린샷 2020-08-12 오전 11.13.18](/Users/roger/Desktop/스크린샷 2020-08-12 오전 11.13.18.png)
+![스크린샷 2020-08-12 오전 11.13.18](https://github.com/watso77/kafka_nifi/blob/master/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-08-12%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.13.18.png)
 
 - DBCPConnectionPool 설정
 
   다른 정보는 DB Connection Pool 설정이나, Database Driver Location(s)에 사용하고자 하는 driver를 잡아줘야 한다.
 
-  ![스크린샷 2020-08-12 오전 11.16.54](/Users/roger/Desktop/스크린샷 2020-08-12 오전 11.16.54.png)
+  ![스크린샷 2020-08-12 오전 11.16.54](https://github.com/watso77/kafka_nifi/blob/master/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202020-08-12%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%2011.16.54.png)
 
 
 
