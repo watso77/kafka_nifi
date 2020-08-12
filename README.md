@@ -144,9 +144,9 @@ bin/kafka-console-consumer.sh --bootstrap-server MariaDB_primary:9092 --topic te
 sudo yum -y install telegraf
 
 # 서버 실행
-``` bash
 ./telegraf --config telegraf.conf
 
+```
 
 - 설정 
 
